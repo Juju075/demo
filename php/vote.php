@@ -16,64 +16,68 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
    echo $getnom;
    echo $gett; 
 
-//Requete 1:  Est ce que l'etablissement existe ?
-$check = $bdd->prepare('SELECT nom FROM etablissements WHERE nom = ?');
-$check->execute(array($getnom));
-//manque fetch
-
-if($check->rowCount() == 1){
-   echo 'on server l\'etablissement existe.';
-
-   if($gett == 1){
-      echo 'Button like a ete clique.';
-     
-      //DETROMPEUR -----------------------
-      // recuperation du tableau des likes user
+   //Requete 1:  Est ce que l'etablissement existe ?
    
-         $check_likes = $bdd->prepare('SELECT likes FROM reviews  WHERE id_user = ? AND nom_etablissemnt = ?');        
-         $check_likes->execute(array($id_user, $getnom));
+   $check = $bdd->prepare('SELECT nom FROM etablissements WHERE nom = ?');
+   $check->execute(array($getnom));
+   //manque fetch
 
-         $tab_likes_user = $check_likes->fetchall();
+   if($check->rowCount() == 1){
+   echo 'l\'etablissement existe.';
 
-
-
-
-         var_dump($tab_likes_user);
-
-         echo 'jusqu\'ici tout vas bien ';
-         
-         // aditionner la somme des likes (norm 0 ou 1)
  
-         $nbrs_likes = count($tab_likes_user);
+      if($gett == 1){
+      echo 'Button like a ete clique.';
 
+      //Requete : Est ce qu'une ligne existe pour le duo  user & etablissement (donc existe likes ou dislikes).
+      $check_likes = $bdd->prepare('SELECT id FROM reviews WHERE id_user = ? AND nom_etablissement = ? ');        
+      $check_likes->execute(array($id_user,$getnom));
 
+      $variable = $check_likes->fetchall();
+      var_dump($variable);
+      // array(0) { } si inexistant
 
-         if (emtpy($nbrs_likes)) {
-            //add like
-            $ins = $bdd->prepare('INSERT INTO reviews(likes, nom_etablissement, id_user) VALUES (?, ?, ?)');
-            $ins->execute(array($like, $getnom, $id_user));
-
-         }elseif ($nbrs_likes == 1) {
-            # update deja like en 0
-            $req_updt_likes = $bdd->prepare('UPDATE reviews SET likes=? WHERE id_user=? AND nom=?');
-            $req_updt_likes->execute(array($reset,$id_user,$getnom));
-
-         }
-//Fin detrompeur likes --------------------    
-
-
- /* add simple
-    // Direct vote sans filtre Insert like ok fonctionne
+      //
+      //DETROMPEUR ----------------------- erreur si n'existe pas
       
-      $ins = $bdd->prepare('INSERT INTO reviews(likes, nom_etablissement, id_user) VALUES (?, ?, ?)');
-      $ins->execute(array($like, $getnom, $id_user));
-*/  
+        
+         if ($check_likes->rowCount() == 1) { 
+         echo 'deja vote pour cet etalissement';
+
+               //Requete : ok nbr de like de l'utilisateur.
+               $check_votes = $bdd->prepare('SELECT likes FROM reviews WHERE id_user = ? AND nom_etablissement = ? ');        
+               $check_votes->execute(array($id_user,$getnom));
+               $variable2 = $check_votes->fetchall();
+               var_dump($variable2);
+
+               echo "le nombre de like est de:" . $variable2[0]['likes'];
+               
+               $resultat = $variable2[0]['likes'];
+               echo $resultat;
+               
+               //Si like = 0  +1like alors sinon si like =1 alors update 0
+               if ($resultat == 0) {
+                  $req_upt_likes = $bdd->prepare('UPDATE reviews SET likes = 1 WHERE nom_etablissement = ? AND id_user = ? ');
+                  $req_upt_likes->execute(array($getnom,$id_user));
+
+               }elseif ($resultat == 1) {
+                  $req_upt_likes = $bdd->prepare('UPDATE reviews SET likes = 0 WHERE nom_etablissement = ? AND id_user = ? ');
+                  $req_upt_likes->execute(array($getnom,$id_user));
+               }
+
+         } //Fin vote like bascule 1 ou 0
+
+         if ($check_likes->rowCount() == null) {
+            echo 'j\'amais voter pour cet etablissement';
+
+            $ins = $bdd->prepare('INSERT INTO reviews (likes) VALUES (1)');
+            $ins->execute(array());
+         }
 
 
-//*********** 
-// COMPTEUR de likes de l'établissement.   
+         // COMPTEUR de likes de l'établissement.  ok fonctionne 
          //Requete 3: Recuperer la liste de tous les likes filtre par nom et les aditonner.
-         
+
          $req_likes = $bdd->prepare('SELECT likes FROM reviews WHERE likes AND nom_etablissement = ?');
          $req_likes->execute(array($getnom));
          $compteur_likes= $req_likes->fetchall();
@@ -81,75 +85,89 @@ if($check->rowCount() == 1){
          var_dump($compteur_likes);
          // Somme des valeurs retournees. 
          $total = count($compteur_likes);
-      
+
          echo 'le total de likes est de:' . $total;
 
          // Stocker le compteur dans etablissement.
          $upt_total = $bdd->prepare('UPDATE etablissements SET compteur_likes=? WHERE nom=?');
          $upt_total->execute(array($total,$getnom));
-        
 
-//*********** 
          echo 'jusqu\'ici tout vas bien ';
          header('location: http://extranet.gbaf.freeprofy.com/notation.php');
-  // ---------------------------------------------------------
- }//Fin like  > copy past modif Dislike
 
-   elseif ($gett == 2) {
-      echo 'Button dislike a ete clique.';
+      }  //Fin Bouton like
+//-----------------------------------------------
+   if($gett == 2){
+         echo 'Button like a ete clique.';
 
-      $votes = 1;  
+         //Requete : Est ce qu'une ligne existe pour le duo  user & etablissement (donc existe dislikes ou disdislikes).
+         $check_dislikes = $bdd->prepare('SELECT id FROM reviews WHERE id_user = ? AND nom_etablissement = ? ');        
+         $check_dislikes->execute(array($id_user,$getnom));
 
-      // Ajoute 1 dislike $insertion
-      $ins = $bdd->prepare('INSERT INTO reviews(dislikes, nom_etablissement, id_user) VALUES (?, ?, ?)');
-      $ins->execute(array($votes, $getnom, $id_user));
-  // ---------------------------------------------------------
+         $variable = $check_dislikes->fetchall();
+         var_dump($variable);
+         // array(0) { } si inexistant
 
-//*********** 
-// COMPTEUR de dislikes de l'établissement.   
-         //Requete 3: Recuperer la liste de tous les likes filtre par nom et les aditonner.
+         //
+         //DETROMPEUR ----------------------- erreur si n'existe pas
          
-         $req_dislikes = $bdd->prepare('SELECT dislikes FROM reviews WHERE dislikes AND nom_etablissement = ?');
-         $req_dislikes->execute(array($getnom));
-         $compteur_dislikes= $req_dislikes->fetchall();
-
-         var_dump($compteur_dislikes);
-         // Somme des valeurs retournees. 
-         $total = count($compteur_dislikes);
-      
-         echo 'le total de dislikes est de:' . $total;
-
-         // Stocker le compteur dans etablissement.
-         $ins_total = $bdd->prepare('UPDATE etablissements SET compteur_dislikes=? WHERE nom=?');
-         $ins_total->execute(array($total,$getnom));
-
-//*********** 
          
-         header('location: http://extranet.gbaf.freeprofy.com/notation.php');
-  // ---------------------------------------------------------
+            if ($check_dislikes->rowCount() == 1) { 
+            echo 'deja vote pour cet etalissement';
 
-   }//Fin dislike
+                  //Requete : ok nbr de like de l'utilisateur.
+                  $check_votes = $bdd->prepare('SELECT dislikes FROM reviews WHERE id_user = ? AND nom_etablissement = ? ');        
+                  $check_votes->execute(array($id_user,$getnom));
+                  $variable2 = $check_votes->fetchall();
+                  var_dump($variable2);
+
+                  echo "le nombre de like est de:" . $variable2[0]['dislikes'];
+                  
+                  $resultat = $variable2[0]['dislikes'];
+                  echo $resultat;
+                  
+                  //Si like = 0  +1dislike alors sinon si like =1 alors update 0
+                  if ($resultat == 0) {
+                     $req_upt_dislikes = $bdd->prepare('UPDATE reviews SET dislikes = 1 WHERE nom_etablissement = ? AND id_user = ? ');
+                     $req_upt_dislikes->execute(array($getnom,$id_user));
+
+                  }elseif ($resultat == 1) {
+                     $req_upt_dislikes = $bdd->prepare('UPDATE reviews SET dislikes = 0 WHERE nom_etablissement = ? AND id_user = ? ');
+                     $req_upt_dislikes->execute(array($getnom,$id_user));
+                  }
+
+            } //Fin vote dislike bascule 1 ou 0
+
+            if ($check_dislikes->rowCount() == null) {
+               echo 'j\'amais voter pour cet etablissement';
+
+               $ins = $bdd->prepare('INSERT INTO reviews (dislikes) VALUES (1)');
+               $ins->execute(array());
+            }
 
 
+            // COMPTEUR de dislikes de l'établissement.  ok fonctionne 
+            //Requete 3: Recuperer la liste de tous les dislikes filtre par nom et les aditonner.
 
+            $req_dislikes = $bdd->prepare('SELECT dislikes FROM reviews WHERE dislikes AND nom_etablissement = ?');
+            $req_dislikes->execute(array($getnom));
+            $compteur_dislikes= $req_dislikes->fetchall();
 
+            var_dump($compteur_dislikes);
+            // Somme des valeurs retournees. 
+            $total = count($compteur_dislikes);
 
+            echo 'le total de dislikes est de:' . $total;
 
+            // Stocker le compteur dans etablissement.
+            $upt_total = $bdd->prepare('UPDATE etablissements SET compteur_dislikes=? WHERE nom=?');
+            $upt_total->execute(array($total,$getnom));
 
+            echo 'jusqu\'ici tout vas bien ';
+            header('location: http://extranet.gbaf.freeprofy.com/notation.php');
 
-
-
-
-
-
-
-
-
-
-
-
-
-   } // Fin requete 1 
-} // Fin isset debut
-echo 'C la fin du script.'
+         }  //Fin Bouton dislike
+   }  //Fin if 1
+}  //Fin de script 
+echo 'C la fin du script.';
 ?>
