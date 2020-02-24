@@ -92,16 +92,19 @@ $(document).ready(function(){
 
                 <?php include("inclusion_notation.php"); ?>
 
-                <!--    <?php include("  x  ");?>
-                        <?php include("x");?>
-                        <?php include("x");?>
-                        <?php include("x");?>
-                        <?php include("x");?>
-                        <?php include("x");?>
-                        <?php include("x");?>
-                        <?php include("x");?>
-                        <?php include("x");?>
-                        <?php include("x");?>
+                <!--    
+                <?php include("ranking_generator.php");?>
+
+                        <?php include("x1");?>
+                        <?php include("x2");?>
+                        <?php include("x3");?>
+                        <?php include("x4");?>
+                        <?php include("x5");?>
+                        <?php include("x6");?>
+                        <?php include("x7");?>
+                        <?php include("x8");?>
+                        <?php include("x9");?>
+                        <?php include("x10");?>
 
 
                 <!-- Order by  -->

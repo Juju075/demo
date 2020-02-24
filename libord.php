@@ -1,0 +1,1 @@
+<!-- https://developer.mozilla.org/fr/docs/Apprendre/HTML/Multimedia_and_embedding/Other_embedding_technologies -->

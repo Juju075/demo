@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 //connexion
 $bdd = new PDO('mysql:host=localhost;dbname=mon_projet;charset=UTF8', 'dev06' ,'_cxeK9Dt)hkA', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 // si like et etablissement existe et non null > alors affectation des variables
@@ -9,9 +11,7 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
    $gett = (int) $_GET['t']; // like or dislike
    $sessionnom = 5;  // ne pas voter plusieur fois
 
-   $id_user = 5; // int id de session utilisateur 
-   $like = 1;
-   $reset = 0;
+   $id_user = $_SESSION['id_user']; // int id de session utilisateur 
 
    echo $getnom;
    echo $gett; 
