@@ -1,0 +1,55 @@
+body{
+    background-color: #f8ceec;
+    background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+}
+
+
+
+/* Media quieries mobile & grand ecran */
+
+@media{
+
+}
+.container{
+    display:flex;
+    flex-wrap:wrap; /* par défaut */
+
+    max-width: 700px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+     
+
+
+    -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    /* background-color: white; */
+}
+.elements {
+    padding:5px;
+    flex: 1 340px;
+    align-items:center;
+    background-color: white;
+  }
+ 
+p{
+font-family: Arial, Helvetica, sans-serif; 
+font-size:12px;
+justify-content: ;   
+}  
+
+ .sous_elements{
+
+
+ } 
+
+ .container_2{
+    margin-left: auto;
+    margin-right: auto;
+
+ }
+ 
+ @media{
+
+}
