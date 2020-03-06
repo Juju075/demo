@@ -11,8 +11,10 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
    $gett = (int) $_GET['t']; // like or dislike
    $sessionnom = 5;  // ne pas voter plusieur fois
 
-   $id_user = $_SESSION['id_user']; // int id de session utilisateur 
+   //$id_user = $_SESSION['id_user']; // int id de session utilisateur 
+   $id_user = $_SESSION['id_user'];
 
+   echo $id_user;
    echo $getnom;
    echo $gett; 
 
@@ -29,7 +31,7 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
       if($gett == 1){
       echo 'Button like a ete clique.';
 
-      //Requete : Est ce qu'une ligne existe pour le duo  user & etablissement (donc existe likes ou dislikes).
+      //Requete : Est ce qu'une ligne existe pour le duo  user & etablissement.
       $check_likes = $bdd->prepare('SELECT id FROM reviews WHERE id_user = ? AND nom_etablissement = ? ');        
       $check_likes->execute(array($id_user,$getnom));
 
@@ -39,10 +41,21 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
 
       //
       //DETROMPEUR ----------------------- erreur si n'existe pas
-      
-        
-         if ($check_likes->rowCount() == 1) { 
+
+
+      // Nouveau ok teste
+      $req_likes = $bdd->prepare('SELECT likes FROM reviews WHERE id_user = ? AND nom_etablissement = ?');
+      $req_likes->execute(array($id_user, $getnom)); 
+      $likes = $req_likes->fetchall();
+      var_dump($likes); 
+
+
+         //Nouveau modifier &&
+         if ($check_likes->rowCount() == 1 && $likes == 1 ) { 
          echo 'deja vote pour cet etalissement';
+         echo $id_user;
+
+
 
                //Requete : ok nbr de like de l'utilisateur.
                $check_votes = $bdd->prepare('SELECT likes FROM reviews WHERE id_user = ? AND nom_etablissement = ? ');        
@@ -67,12 +80,21 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
 
          } //Fin vote like bascule 1 ou 0
 
-         if ($check_likes->rowCount() == null) {
-            echo 'j\'amais voter pour cet etablissement';
 
-            $ins = $bdd->prepare('INSERT INTO reviews (likes) VALUES (1)');
-            $ins->execute(array());
+
+         //Nouveau adapter $likes ==0
+         if ($check_likes->rowCount() == null || $likes == null ) {
+            echo 'j\'amais voter pour cet etablissement';
+            echo $id_user;
+            //ajouter id user et etablissement
+            //$likes = 1;
+            $ins = $bdd->prepare('INSERT INTO reviews(likes, id_user, nom_etablissement) VALUES (? ,?, ?)');
+            $ins->execute(array($likes,$id_user,$getnom));
          }
+
+
+
+
 
 
          // COMPTEUR de likes de l'établissement.  ok fonctionne 
@@ -93,12 +115,14 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
          $upt_total->execute(array($total,$getnom));
 
          echo 'jusqu\'ici tout vas bien ';
-         header('location: http://extranet.gbaf.freeprofy.com/notation.php');
+         //retour a la derniere page consulte
+         header('location: http://extranet.gbaf.freeprofy.com/notation.php?etablissement='. $getnom);
+         //header('location: http://extranet.gbaf.freeprofy.com/notation.php');
 
       }  //Fin Bouton like
 //-----------------------------------------------
    if($gett == 2){
-         echo 'Button like a ete clique.';
+         echo 'Button dislike a ete clique.';
 
          //Requete : Est ce qu'une ligne existe pour le duo  user & etablissement (donc existe dislikes ou disdislikes).
          $check_dislikes = $bdd->prepare('SELECT id FROM reviews WHERE id_user = ? AND nom_etablissement = ? ');        
@@ -111,6 +135,11 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
          //
          //DETROMPEUR ----------------------- erreur si n'existe pas
          
+         // Nouveau ok teste
+            $req_dislikes = $bdd->prepare('SELECT likes FROM reviews WHERE id_user = ? AND nom_etablissement = ?');
+            $req_dislikes->execute(array($id_user, $getnom)); 
+            $dislikes = $req_dislikes->fetchall();
+            var_dump($dislikes); 
          
             if ($check_dislikes->rowCount() == 1) { 
             echo 'deja vote pour cet etalissement';
@@ -121,7 +150,7 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
                   $variable2 = $check_votes->fetchall();
                   var_dump($variable2);
 
-                  echo "le nombre de like est de:" . $variable2[0]['dislikes'];
+                  echo "le nombre de dislike est de:" . $variable2[0]['dislikes'];
                   
                   $resultat = $variable2[0]['dislikes'];
                   echo $resultat;
@@ -138,11 +167,12 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
 
             } //Fin vote dislike bascule 1 ou 0
 
-            if ($check_dislikes->rowCount() == null) {
+            if ($check_dislikes->rowCount() == null || $dislikes == null) {
                echo 'j\'amais voter pour cet etablissement';
 
-               $ins = $bdd->prepare('INSERT INTO reviews (dislikes) VALUES (1)');
-               $ins->execute(array());
+            //$dislikes = 1;
+            $ins = $bdd->prepare('INSERT INTO reviews(dislikes, id_user, nom_etablissement) VALUES (? ,?, ?)');
+            $ins->execute(array($dislikes,$id_user,$getnom));
             }
 
 
@@ -164,7 +194,9 @@ if(isset($_GET['t'],$_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom']
             $upt_total->execute(array($total,$getnom));
 
             echo 'jusqu\'ici tout vas bien ';
-            header('location: http://extranet.gbaf.freeprofy.com/notation.php');
+            //retour a la derniere page consulte
+            header('location: http://extranet.gbaf.freeprofy.com/notation.php?etablissement='. $getnom);
+            //header('location: http://extranet.gbaf.freeprofy.com/notation.php');
 
          }  //Fin Bouton dislike
    }  //Fin if 1
