@@ -1,31 +1,10 @@
 <?php
-
 session_start();
-$likes = null;
 
 $bdd = new PDO('mysql:host=localhost;dbname=mon_projet;charset=UTF8', 'dev06' ,'_cxeK9Dt)hkA', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-
-//Template sans marqueurs
-
-// Requete titres
-$req_etablissements = $bdd->prepare('SELECT nom, descriptif, dir_logo , link_url, compteur_likes, compteur_dislikes FROM etablissements');
-$req_etablissements->execute(); 
-$tab_fiches = $req_etablissements->fetchall();
-
-
-/*
-//Classement 
-
-par default
-
-1 user
-2 likes
-3 dislikes
-4 most comments
-
-
-*/
- 
+$req_info = $bdd->prepare('SELECT avatar FROM banksters WHERE id_user = ?');
+$req_info->execute(array($_SESSION['id_user']));
+$userData = $req_info->fetch();
 ?>
 
 <!DOCTYPE html/>
@@ -35,13 +14,6 @@ par default
 <meta charset="utf-8"/>
 <link rel="icon" href="favicon.ico">
 <link href="css/dashboard.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 <script>
 $(document).ready(function(){
@@ -50,71 +22,43 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-    <div class="container">
-        <section><!-- Section 1 - 2 rows  - header & Profile -->
+    <div id="main_container"><!-- Main container -->
+            <section><!-- Section 1 - 2 rows  - header & Profile -->
+            <?php include("header.php"); ?>
+            <?php include("middle_section.php"); ?>
 
-        <?php include("header.php"); ?>
+                <div class="row"><!-- Content 1000 px  1 col-->
+                    <article>
 
-        <section><!-- Section 2 -2 rows -  Sidebar  Article bgimg Big pic-->
+                        <div class="bloc_notation">
+                            <?php
+                                $bdd = new PDO('mysql:host=localhost;dbname=mon_projet;charset=UTF8', 'dev06' ,'_cxeK9Dt)hkA', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+                                $req_list = $bdd->query('SELECT nom, descriptif, dir_ph_headquarter, compteur_likes, compteur_dislikes FROM etablissements ORDER BY compteur_likes ASC');
+                                while($tab_fiches = $req_list->fetch()){ 
+                            ?>    
+                                <table>
+                                    <tr>
+                                        <th><img src="<?php echo 'images/'. $tab_fiches['dir_ph_headquarter'];?>" width="197" height="100"/></th>
+                                        <th><h1><?php echo $tab_fiches['nom']; ?></h1></th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >                           
+                                        <p><?php echo $tab_fiches['descriptif']; ?></p></td>
+                                    </tr> 
+                                    <tr>
+                                        <td><button type="button" onclick="toggle_div(this,'test-1');" title="Afficher la suite">+</button>
+                                        <a href="template_details.php?etablissement=<?= $tab_fiches['nom'];?>">Lire la suite</a></td>
+                                    </tr>   
+                                </table>
+                            <?php
+                                } // Fin de boucle
+                            ?>           
+                        </div>    
 
-            <div class="row">
-                <div class="col-lg-2"><!-- Sidebar 1 col 2 -->
-                    <nav class="sidebar">
-                    <ul>
-                    Search bar here
-                    <br>
-                        <li><a href="dashboard.php">Accueil</a></li>
-                        <li>Messagerie</li>
-                        <li><a href="newsfeed.php">Newsfeed</a></li>
-                        <li><a href="https://fr.global-rates.com/taux-de-interets/libor/euro-europeen/euro-europeen.aspx" target="_blank"> Taux interbancaire Libord</a></li>
-                        <li>Ventes regional</li>
-                        <li><a href="notation.php">Notation</a></li> 
-                        <br>
-                    </ul>
-                    </nav>
-                </div><!-- Fin 1/2 column  -->
-
-                <div class="col-lg-10">    
-                   <div id="bgimg">
-                        <div id="image"><img src="images/conseiller.jpg"></div>
-                        <div id="texte">BIENVENUE SUR VOTRE EXTRANET GBAF.</div>
-                    </div>
+                    </article>
                 </div>
 
-            </div><!-- Fin row  -->
-
-
-        </section><!-- Fin section menu big pic  -->
-
- 
-            <div class="row"><!-- Content 1000 px  1 col-->
-                <article class="col-lg-12">
-
-                <?php include("inclusion_notation.php"); ?>
-
-                <!--    
-                <?php include("ranking_generator.php");?>
-
-                        <?php include("x1");?>
-                        <?php include("x2");?>
-                        <?php include("x3");?>
-                        <?php include("x4");?>
-                        <?php include("x5");?>
-                        <?php include("x6");?>
-                        <?php include("x7");?>
-                        <?php include("x8");?>
-                        <?php include("x9");?>
-                        <?php include("x10");?>
-
-
-                <!-- Order by  -->
-
-                </article>
-            </div>
-         
-            // insert footer
             <?php include("footer.php"); ?>
-
-    </div><!--Fin de container -->
+          
 </body>
 </html>
