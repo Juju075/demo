@@ -1,23 +1,16 @@
 <?php
 session_start();
+$id_user = $_SESSION['id_user'];
 
 $bdd = new PDO('mysql:host=localhost;dbname=mon_projet;charset=UTF8', 'dev06' ,'_cxeK9Dt)hkA', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$req_multi= $bdd->prepare('SELECT adresse, telephone FROM banksters WHERE utilisateur = ? ');
-$req_multi->execute(array($_SESSION['utilisateur']));
-$reponse = $req_multi->fetch();
+$req_avatar = $bdd->prepare('SELECT avatar FROM banksters WHERE id_user = ?');
+$req_avatar->execute(array($id_user));
+$user_avatar = $req_avatar->fetch();
 
-$adresse = $reponse['adresse'];
-$telephone = $reponse['telephone'];
-/*
-//Debugging
-var_dump($reponse);
-
-//--------------------
-*/
- 
-
- 
+//var_dump($user_avatar);
 ?>
+
+
 
 <!DOCTYPE html />
 <html>
@@ -25,45 +18,62 @@ var_dump($reponse);
 <title>ma page</title>
 <meta charset="utf-8"/>
 <link rel="icon" href="favicon.ico">
-<link href="css/dashboard.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-<script>
-$(document).ready(function(){
-    $("#div3").fadeIn(900);
-});
-</script>
-<? 
-$user = "cookie";
-$img =  "images/profile_ . $user . \.png"; //  Avatar
-$img_alt = 'photo de profile';
-$mess_user_date = "";    //  Derniere date de connexion
-$mess_user_pending = ""; //  non lu
-
-?>
+<link href="css/profile.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Modifier mon profile.</h1>
-<br>
-<p><strong>Prenom:</strong>  <?php echo $_SESSION['prenom'] ; ?></p><br>
-<p><strong>Nom:</strong>  <?php echo $_SESSION['nom_de_famille'] ; ?></p><br>
-<p><strong>Telephone:</strong>  <?php echo $telephone; ?></p><br>
-<p><strong>Adresse:</strong>  <?php echo $adresse; ?></p><br>
+  <div class="link">
+    <center><a href="dashboard.php">Retour à l'accueil.</a></center>
+  </div>
 
-telecharger avatar<br>
-<p>Changer mot de password</p><br>
-<a href="dashboard.php">retour accueil</a>
-<br>
-<img src="images/profile.jpg">
+  <div id="container">
 
+  <div class="bloc_elements">
 
+    <div class="elements">
+        <div><h1>Modifier mon profile.</h1><br>
+        </div>
 
+        <div>
 
+            <div class="sous_elements">
+              <h3><?php echo ucfirst($_SESSION['prenom']); ?></h3>
+              <h3><?php echo ucfirst($_SESSION['nom_de_famille']); ?></h3>
+            </div>
+            <div class="sous_elements"><img src="images/avatar/<?php echo $user_avatar['avatar']; ?>"/></div>
 
+        </div> 
+    </div>
+      <!--   -->
+  </div>
+
+    <div class="bloc_elements">
+
+      <div class="elements">
+          <h3>Modifier le mot de passe</h3><br>
+
+          <form method="post" action="user_update.php">
+            <label for="nouveau_mt_passe">Nouveau mot de passe:</label>
+            <input type="text" name="nouveau_mt_passe" id="" minlength=3 required><br>
+            <label for="nouveau_mt_passe">Confirmer le nouveau mot de passe:</label>
+            <input type="text" name="confirmation_passe" id="" minlength=3 required><br>
+            <input type="submit" value="Envoyer">
+          </form>
+
+      </div>
+
+      <div class="elements">
+          <h3>Modifier l'avatar.</h3><br>
+          <!-- Si avatar est default alors on affiche  -->
+          <img src="images/profile.jpg"/><br><br>
+          <form method="post" action="php/avatar.php" enctype="multipart/form-data">
+            <label>Nom du fichier:</label>
+            <input type="hidden" name="size" value="20000">
+            <input type="file" name="avatar" id="image"> 
+            <input type="submit" value="Telecharger l'image">
+          </form>
+      </div>
+    </div><!-- Fin container  -->
+  </div>
+<!--  -->
 </body>
 </html>
