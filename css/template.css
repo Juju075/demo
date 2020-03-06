@@ -1,8 +1,8 @@
 body{
-    background-color:rgb(171, 186, 253); 
-}
+    background-color:rgb(171, 186, 253);
+ }
 
-#container {
+ #container {
     display: flex;
     flex-wrap: wrap;
     margin-top:100px;
@@ -11,18 +11,51 @@ body{
     max-width: 800px;
     background-color:white; 
 
-    
-}
-
-.element{
-
     /* rainwbow border */
     border: 5px solid transparent;
     border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
     border-image-slice: 1;
-    
+    }
 
-}
-p{
-    justify-content: ;
-}
+
+    img{
+        max-width:100%;
+        width:auto\9;
+        height:auto;
+        vertical-align:middle;
+        border:0;
+        -ms-interpolation-mode:bicubic;
+    }
+    .vote{
+        display: flex;
+        
+        align-content: center;
+        margin-top: 20px;
+    }
+    .avatar {
+        vertical-align: middle;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
+  
+
+    #container_comments{
+        display: flex;
+        margin-top: 20px;
+        border-color: 1px solid crimson;
+    }  
+    .comment{
+        display: flex;
+    }
+
+    #add_comment{
+        display: flex;
+        margin-top: 20px;
+
+    }
+    .add_etablissement{
+        display: flex;
+        margin-top: 20px;
+
+    }
