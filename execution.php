@@ -11,8 +11,8 @@
         var_dump($resultat);
         echo $_POST['utilisateur'];
         echo $_POST['mot_de_passe'];
-        echo $resultat['mot_de_passe'];
-        
+        echo $resultat['mot_de_passe'];   
+
         // vérifier la correspondance  Parametres: pass saisi vs pass stocke
         $Verif_pass= password_verify($_POST['mot_de_passe'], $resultat['mot_de_passe']);
        
