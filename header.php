@@ -31,14 +31,10 @@
                 echo $last_connexion['last_connexion'];
                 ?></p>
             </div>
-
-            <div class="icones"><!-- Icones quieries-->
-                <a href="profile.php" title="page_profil"><img src="images/icon_01.png" width="62px" height="80px" alt="icone_profil"/></a>
-                <a href="notation.php?sort=ASC" title="page_etablissements_decroissant"><img src="images/icon_02.png" width="62px" height="80px" alt="icone_classement_ascendant"/></a>
-                <a href="notation.php?sort=DESC"title="page_etablissements_croissant"><img src="images/icon_03.png" width="62px" height="80px" alt="icone_classement_descendant"/></a>
-                
-                <a href="#"><img src="images/icon_04.png" width="62px" height="80px" alt="icone_defaut"/></a>
-                <a href="#"><img src="images/icon_05.png"width="62px" height="80px" alt="icone_messagerie"/></a>  
+            <div>
+                <p class="color"><?php  if ($_GET['m'] == 'welcome') {
+                    echo 'Bienvenue sur votre espace GBAF, n\'oublier pas de modifier votre avatar!';
+                } ?></p>
             </div>
             <div class="icones1">
                 <nav>
