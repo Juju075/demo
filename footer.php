@@ -1,9 +1,6 @@
-<section><!-- Footer -->
+<section class="section_header"><!-- Footer -->
             <div><!-- 1 row --> 
-                <img src="images/footer.jpg" class="responsive"> 
+                <img src="images/footer.jpg" class="footer_arrondi"> 
             </div>    
-    </section><!-- Fin section footer --> 
-</div>
-<div>
-    <p>elgatodesign 2020 © Tous droits réservés.</p>
-</div>
+</section><!-- Fin section footer --> 
+
