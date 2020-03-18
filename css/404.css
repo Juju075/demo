@@ -1,0 +1,20 @@
+body{
+    background-color: slategrey;
+}
+
+img{
+    max-width:100%;
+    width:auto\9;
+    height:auto;
+    vertical-align:middle;
+    border:0;
+    -ms-interpolation-mode:bicubic;
+}
+
+#container{
+    margin-top: 2 em;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
