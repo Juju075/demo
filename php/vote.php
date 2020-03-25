@@ -8,7 +8,6 @@ echo $_GET['t'];
 echo '<pre>';
 
 if(isset($_GET['t'], $_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom'])){ 
-   
    $getnom = $_GET['nom'];
    $id_user = $_SESSION['id_user'];
    $gett = (int) $_GET['t'];
@@ -18,7 +17,6 @@ if(isset($_GET['t'], $_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom'
    $check = $bdd->prepare('SELECT id FROM etablissements WHERE nom = ?');
    $check->execute(array($getnom));
 
-   
    if($check->rowCount() == 1) { // Like
    
       echo 'l\'etablissement existe';
@@ -36,7 +34,6 @@ if(isset($_GET['t'], $_GET['nom']) AND !empty($_GET['t']) AND !empty($_GET['nom'
          //Auto - Compensation delete dislike
          $del = $bdd->prepare('DELETE FROM dislikes WHERE nom = ? AND id_user = ?');
          $del->execute(array($getnom, $id_user));
-        
 
             if($check_like->rowCount() == 1) { // Double clic - on a deja like donc on efface le like
                $del = $bdd->prepare('DELETE FROM likes WHERE nom = ? AND id_user = ?');
