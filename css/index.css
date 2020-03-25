@@ -2,11 +2,10 @@ body{
     background-color: #f8ceec;
     background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
 }
-p{
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size:12px;
-    justify-content: ;   
-    } 
+
+p, a, h1{
+    font-family: 'Abel', sans-serif; 
+}
 ul{
     list-style-type: none;
 
@@ -20,6 +19,14 @@ img{
     -ms-interpolation-mode:bicubic;
 }
 
+.erreur{
+    text-align: center;
+    font-size:large;
+    color: red;
+}
+
+
+/*media querie grand ecran */
 @media screen and (min-width:800px)
 {
     #container{
@@ -108,9 +115,7 @@ img{
             align-items:center;
            
         }
-        .sous_elements{
-            max-width: 400px;
-        }
+        
 
         #footer_container{
             display:flex;
@@ -119,6 +124,9 @@ img{
             max-width: 350px;
             margin-left: auto;
             margin-right: auto;
+        }
+        .sous_elements{
+            max-width: 400px;
         }
 
 

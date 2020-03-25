@@ -1,4 +1,6 @@
 ceci est un fichier txt de qualite :w
 :wq
+:wq
+
 
 

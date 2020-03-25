@@ -1,11 +1,8 @@
 <header><!-- Section header -->
-
         <div class="header"><!-- 1 row --> 
-
             <div><!-- 1 item - logo st -->
                 <img src="images/dashboard_logo.jpg" alt="image_logo">
             </div>
-
             <div><!-- 2 nd item - Profile Deconnexion -->
                 <nav>
                     <ul>
@@ -13,14 +10,11 @@
                     </ul>
                 </nav>
             </div> 
-
         </div>
         <div class="profile">    <!-- 1 row --> 
-
-                    <div>
-                        <img src="images/avatar/<?php echo $userData['avatar'];?>" class="avatar" alt="image_avatar"/>
-                    </div>
-
+            <div>
+                <img src="images/avatar/<?php echo $userData['avatar'];?>" class="avatar" alt="image_avatar"/>
+            </div>
             <div>
                 <h5>Bonjour, <?php echo ucfirst($_SESSION['prenom']) . ' ' . ucfirst($_SESSION['nom_de_famille']); ?></h5>
                 <p>Dernière date de connexion:<br><? 
@@ -29,15 +23,18 @@
                 $req_connexion->execute(array($_SESSION['id_user']));
                 $last_connexion = $req_connexion->fetch();
                 echo $last_connexion['last_connexion'];
-                ?></p>
+                ?>
+                </p>
             </div>
             <div>
                 <p class="color"><?php  if ($_GET['m'] == 'welcome') {
                     echo 'Bienvenue sur votre espace GBAF, n\'oublie pas de modifier votre avatar!';
-                } ?></p>
+                } ?>
+                </p>
             </div>
             <div class="icones1">
-                <div class="item item-1"><a href="dashboard.php">Accueil</a></div>
+                <div class="item item-1"><a href="dashboard.php">Accueil</a>
+                </div>
                 <nav>
                     <ul>
                         <li><a href="/profile.php">Profil</a></li>
@@ -49,5 +46,5 @@
                 </nav>
             </div>
         </div> 
-        <hr class="icones1">
-            </header>  <!-- Fin section header--> 
+        <hr class="icones1"> <!-- ajouter formatage dans css--> 
+</header>  <!-- Fin section header--> 

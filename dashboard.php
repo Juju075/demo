@@ -12,7 +12,6 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
     $req_nom_de_famille->execute(array($_SESSION['id_user']));
     $nomfamille = $req_nom_de_famille->fetch();
 
-
     $likes = null;
 
     $req_info = $bdd->prepare('SELECT avatar FROM banksters WHERE id_user = ?');
@@ -25,10 +24,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 }else{
     header('location: /index.php?c=non_connecte');
 }
-
 ?>
- 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -41,28 +37,20 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 </style>
 </head>
 <body>
-
-<div id="main_container"><!-- Main container -->
-
-    <?php include("header_redesign.php"); ?> <!-- ouverture et fermeture section -->
-
-    <div class="row_container space-around">
-      <div class="item item-1"><a href="dashboard.php">Accueil</a></div>
-      <div class="item item-2"><a href="/profile.php">Profil</a></div>
-      <div class="item item-3"><a href="notation.php">Partennaires</a></div>
-      <div class="item item-4"><a href="add_etablissement.php">Ajout établissement</a></div>
-    </div>
-
- <div class="row"><!-- Content 1000 px  1 col-->
-    <article class="justify">
-        <h5>La GBAF promeut l’activité bancaire et financière sur les marchés français, européens et internationaux, et définit les positions et propositions de la profession vis-à-vis des pouvoirs publics et des autorités du domaine économique et financier. Elle diffuse également des normes, bonnes pratiques et recommandations professionnelles et met son expérience à la disposition de ses membres. La GBAF  a aussi pour mission d’informer les banques adhérentes de toute question relative à leurs activités.</h5>
-    </article>
-</div>
-
-    <?php include("footer.php"); ?> <!-- ouverture et fermeture section -->
-    
-   
-</div> 
-<!--  -->
+    <div id="main_container"><!-- Main container -->
+        <?php include("header_redesign.php"); ?> <!-- ouverture et fermeture section -->
+        <div class="row_container space-around">
+            <div class="item item-1"><a href="dashboard.php">Accueil</a></div>
+            <div class="item item-2"><a href="/profile.php">Profil</a></div>
+            <div class="item item-3"><a href="notation.php">Partennaires</a></div>
+            <div class="item item-4"><a href="add_etablissement.php">Ajout établissement</a></div>
+        </div>
+        <div class="row"><!-- Content 1000 px  1 col-->
+            <article class="justify">
+                <h5>La GBAF promeut l’activité bancaire et financière sur les marchés français, européens et internationaux, et définit les positions et propositions de la profession vis-à-vis des pouvoirs publics et des autorités du domaine économique et financier. Elle diffuse également des normes, bonnes pratiques et recommandations professionnelles et met son expérience à la disposition de ses membres. La GBAF  a aussi pour mission d’informer les banques adhérentes de toute question relative à leurs activités.</h5>
+            </article>
+        </div>
+        <?php include("footer.php"); ?> <!-- ouverture et fermeture section -->
+    </div> 
 </body>
 </html>

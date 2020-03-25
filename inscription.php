@@ -45,12 +45,6 @@
             </form>
                     <p><a href="index.php"> Je ne souhaite pas m'inscrire</a></p>     
             </center>
-            <script>  
-        function mymail() {  
-            var em = document.getElementById("email").pattern; 
-            document.getElementById("GFG").innerHTML = em;  
-        }  
-    </script> 
             <!-- Click verification si les deux pass sont didentique si non message -->
         </div>
         <br>

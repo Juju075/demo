@@ -1,0 +1,150 @@
+body{
+    background-color: #f8ceec;
+    background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+}
+ul{
+  list-style-type: none;  
+}
+
+@font-face{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+
+/*  */
+@media screen and (min-width: 800px) {
+
+    #main_container{
+        margin-top: 100px;
+        display: flex;
+        flex-flow: row wrap;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgb(255, 255, 255);
+    
+        -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+        box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    
+    }
+
+    .header{
+        display: flex;
+        justify-content:space-around;
+    
+    }
+    .profile{
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+
+    
+    }
+    .icones1{
+        display:none;
+    }
+    .middle_content{
+        display: flex;
+        width: auto;
+    }
+    .footer{
+        display: flex;
+    }
+
+    .responsive {
+        width: 100%;
+        height: auto;
+    }
+
+    .image_container{
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    /* Centered text */
+    .centered {
+    position: absolute;
+    top: 70%;
+    left: 60%;
+
+    transform: translate(-50%, -50%);
+  }
+
+} 
+
+
+ /* media wrap */
+ @media screen and (max-width: 800px) {
+
+    #main_container{
+        margin-top: 50px;
+        display: flex;
+        flex-flow: row wrap;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgb(255, 255, 255);
+    
+        -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+        box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    
+    }
+
+    .header{
+         
+        justify-content: center;
+    
+    }
+    .profile{
+        
+        display: flex; 
+        justify-content: center;
+        align-items: initial;
+    
+    }
+
+    .icones{
+        display:none;
+    }
+
+    .middle_content{
+         
+        width: auto;
+    }
+    .footer{
+        display: flex;
+    }
+
+    .responsive {
+        width: 100%;
+        height: auto;
+    }
+
+    .image_container{
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    /* Centered text */
+    .centered {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+     }
+
+
+
+
+
+
+}    

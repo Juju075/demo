@@ -1,0 +1,49 @@
+body{
+    background-color:rgb(171, 186, 253);
+ }
+ p{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size:12px;
+    justify-content: ;   
+    } 
+
+img{
+    max-width:100%;
+    width:auto\9;
+    height:auto;
+    vertical-align:middle;
+    border:0;
+    -ms-interpolation-mode:bicubic;
+}
+
+ #container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top:90px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    background-color:white; 
+
+    /* rainwbow border */
+    border: 5px solid transparent;
+    border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+    border-image-slice: 1;
+}
+
+.bloc_elements{
+    display: flex;
+    align-items: center;
+
+}
+.elements{
+
+
+}
+
+
+
+
+
+
+

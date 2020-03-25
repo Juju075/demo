@@ -26,8 +26,8 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 ?>
  
 
-<!DOCTYPE html />
-<html>
+<!DOCTYPE html >
+<html lang="fr">
 <head>
 <title>ma page</title>
 <meta charset="utf-8"/>
@@ -64,19 +64,17 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
                 <div>
                     <div class="item item1"><img src="<?php echo 'images/'. $tab_fiches['dir_ph_headquarter'];?>" width="197" height="100" alt="logo_etablissement"/></div>
                     <div class="item item2"><h1><?php echo $tab_fiches['nom']; ?></h1></div>
-                <div>
+                </div>
                 <div>    
                     <div class="item item3"><p><?php echo $tab_fiches['descriptif']; ?></p></div>
-                <div>    
+                </div>    
                 <div>
                     <div class="item item4"><a href="template_details.php?etablissement=<?= $tab_fiches['nom'];?>">Lire la suite</a></div>
-                <div>
+                </div>
             </div>
         <?php
         } // Fin de boucle
         ?> 
-         
-
     </article>
 </div>
 

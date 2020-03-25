@@ -1,0 +1,8 @@
+body {
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+}
+.test{
+  background-image:url(images/image_de_fond.png);
+  border-color:2px solid green;  
+}
