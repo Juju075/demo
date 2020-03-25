@@ -29,8 +29,8 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 ?>
  
 
-<!DOCTYPE html />
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
 <title>ma page</title>
 <meta charset="utf-8"/>
@@ -55,7 +55,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 
  <div class="row"><!-- Content 1000 px  1 col-->
     <article class="justify">
-        <P>La GBAF promeut l’activité bancaire et financière sur les marchés français, européens et internationaux, et définit les positions et propositions de la profession vis-à-vis des pouvoirs publics et des autorités du domaine économique et financier. Elle diffuse également des normes, bonnes pratiques et recommandations professionnelles et met son expérience à la disposition de ses membres. La GBAF  a aussi pour mission d’informer les banques adhérentes de toute question relative à leurs activités.</p>
+        <h5>La GBAF promeut l’activité bancaire et financière sur les marchés français, européens et internationaux, et définit les positions et propositions de la profession vis-à-vis des pouvoirs publics et des autorités du domaine économique et financier. Elle diffuse également des normes, bonnes pratiques et recommandations professionnelles et met son expérience à la disposition de ses membres. La GBAF  a aussi pour mission d’informer les banques adhérentes de toute question relative à leurs activités.</h5>
     </article>
 </div>
 

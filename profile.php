@@ -25,8 +25,8 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 ?>
  
 
-<!DOCTYPE html />
-<html>
+ <!DOCTYPE html>
+<html lang="fr">
 <head>
 <title>ma page</title>
 <meta charset="utf-8"/>
@@ -38,7 +38,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 </head>
 <body>
 
-<div id="main_container"><!-- Main container -->
+<div id="main_container"> <!-- Main container -->
 
     <?php include("header_redesign.php"); ?> <!-- ouverture et fermeture section -->
 
@@ -62,11 +62,24 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
                         <div class="row_container space-around"> <!-- 1 Row -->
                             <div class="item"> 
                                     <h3><?php echo ucfirst($_SESSION['prenom']); ?></h3>
-                                    <h3><?php echo ucfirst($_SESSION['nom_de_famille']); ?></h3>
+                                    <h3><?php echo ucfirst($_SESSION['nom_de_famille']); ?></h3><br>
+                                    <p class="erreur"><?php if ($_GET['error'] == 'size') {
+                                        echo 'Votre photo de profil ne doit pas dépasser 2Mo.';
+                                    }elseif ($_GET['error'] == 'extension') {
+                                        echo 'Votre photo de profil doit être au format jpg, jpeg, gif ou png' ;
+                                    }elseif ($_GET['error'] == 'import') {
+                                        echo "Erreur durant l'importation de votre photo de profil";
+                                    }elseif ($_GET['u'] == 'identique') {
+                                        echo 'Veuillez saisir de mots de passe identique';
+                                    }
+                                    ?></p>
+                                    <p class="good"><?php if ($_GET['u'] == 'updated'){
+                                        echo 'Votre mot de passe à étè modifié';
+                                    } ?></p>
                             </div>
 
                             <div class="item">
-                                <img src="images/avatar/<?php echo $userData['avatar']; ?>" alt="image_avatar" height="120px"/>
+                                <img src="images/avatar/<?php echo $userData['avatar']; ?>" alt="image_avatar" height="120"/>
                             </div>
                         </div> <!-- Fin row -->
 
@@ -91,10 +104,10 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
                             <div class="item">
                                     <h3>Modifier l'avatar.</h3><br>
                                     <!-- Si avatar est default alors on affiche  -->
-                                    <img src="images/profile.jpg"/ alt="image_avatar_2"><br><br>
+                                    <img src="images/profile.jpg" alt="image_avatar_2"/><br><br>
                                         <form method="post" action="php/avatar.php" enctype="multipart/form-data">
-                                            <label for="avatar">Nom du fichier:</label>
                                             <input type="hidden" name="size" value="20000">
+                                            <label for="avatar">Nom du fichier:</label>
                                             <input type="file" name="avatar" id="image" required/> 
                                             <input type="submit" name="submit" value="Telecharger l'image">
                                         </form>
@@ -105,5 +118,6 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
             </div>
 
         <?php include("footer.php"); ?>
+</div> <!-- rajouter pour erreur w3 validator unclosed div --> 
 </body>
 </html>

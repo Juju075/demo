@@ -29,8 +29,8 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 ?>
  
 
-<!DOCTYPE html />
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
 <title>ma page</title>
 <meta charset="utf-8"/>
@@ -43,7 +43,6 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 <body>
 
 <div id="main_container"><!-- Main container -->
-
     <?php include("header_redesign.php"); ?> <!-- ouverture et fermeture section -->
 
     <div class="row_container space-around">
@@ -52,7 +51,6 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
         <div class="item item-3"><a href="notation.php">Partennaires</a></div>
         <div class="item item-4"><a href="add_etablissement.php">Ajout établissement</a></div>
     </div>
-
  <div class="row"><!-- Content 1000 px  1 col-->
                 <article class="row_container center"> 
                     <div class="etab_container">
@@ -61,24 +59,20 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
                         </div>
                         <div class="item">
                                 <form method="post" action="php/new_ins_etablissement.php" enctype="multipart/form-data">
-                                    <label for="ins_etablissement"></label>
-                                    <input type="text" name="etablissement" id=""  placeholder="Nom de l'établissement." required/><br><br>
+                                    <label for="etablissement"></label>
+                                    <input type="text" name="etablissement" id="etablissement"  placeholder="Nom de l'établissement." required/><br><br>
                                     <label for="descriptif"></label>
-                                    <textarea type="text" name="descriptif" rows="8" cols="55" id="" placeholder="Saissisez le descriptif de l'etablissement." required></textarea ><br><br>
-                                    <label for="">Ajouter une image.</label>
+                                    <textarea name="descriptif" rows="8" cols="55" id="descriptif" placeholder="Saissisez le descriptif de l'etablissement." required></textarea ><br><br> 
                                     <input type="hidden" name="size" value="20000">
-                                    <input type="file" id="" name="image"/>
+                                    <label for="file">Ajouter une image.</label>
+                                    <input type="file" id="fichier" name="image"/>
                                     <input type="submit" value="Envoyer le formulaire">
                                 </form>
                         </div>
-
                     </div> 
                 </article>
 </div>
-
-    <?php include("footer.php"); ?> <!-- ouverture et fermeture section -->
-    
-   
+    <?php include("footer.php"); ?> <!-- ouverture et fermeture section -->    
 </div> 
 <!--  -->
 </body>

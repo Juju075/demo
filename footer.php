@@ -1,6 +1,6 @@
-<section class="section_header"><!-- Footer -->
+<footer class="section_header"><!-- Footer -->
             <div><!-- 1 row --> 
-                <img src="images/footer.jpg" class="footer_arrondi"> 
+                <img src="images/footer.jpg" class="footer_arrondi" alt="image_footer"> 
             </div>    
-</section><!-- Fin section footer --> 
+</footer><!-- Fin section footer --> 
 
