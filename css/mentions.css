@@ -1,31 +1,28 @@
-body{
-    background-color: #dfd7dd;
-    background-image: linear-gradient(315deg, #eedfea 0%, #6263bd 74%);
+body {
+  background-color: #dfd7dd;
+  background-image: linear-gradient(315deg, #eedfea 0%, #6263bd 74%);
 }
 
-p{
-    font-family: 'Dosis', ;
-    text-align: justify;
+p {
+  font-family: "Abel", sans-serif;
+  text-align: justify;
 }
 
-#main_container{
-    margin-top: 100px;
-    display: flex;
-    flex-flow: row wrap;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 15px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 27px 0px 27px 0px;
+#main_container {
+  margin-top: 100px;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 27px 0px 27px 0px;
 
-    -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-    box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-.center{
-    margin-left: auto;
-    margin-right: auto;
-
+.center {
+  text-align: center;
 }
