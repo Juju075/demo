@@ -13,23 +13,16 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
     $req_nom_de_famille->execute(array($_SESSION['id_user']));
     $nomfamille = $req_nom_de_famille->fetch();
 
-
     $likes = null;
 
     $req_info = $bdd->prepare('SELECT avatar FROM banksters WHERE id_user = ?');
     $req_info->execute(array($_SESSION['id_user']));
     $userData = $req_info->fetch();
-    
     //insert tableaux
     $req_list = $bdd->query('SELECT nom, descriptif, dir_logo, compteur_likes, compteur_dislikes FROM etablissements');
-
 }else{
     header('location: /index.php?c=non_connecte');
 }
-
-//Fin script 1
-
-
 if(isset($_GET['etablissement']) AND !empty($_GET['etablissement'])){
     //Affectation
     $nom = $_GET['etablissement'];
@@ -41,19 +34,10 @@ if(isset($_GET['etablissement']) AND !empty($_GET['etablissement'])){
     $req_details = $bdd->prepare('SELECT * FROM etablissements  WHERE nom = ?');
     $req_details->execute(array($nom));
     $details_etablissement = $req_details->fetchall();
-
-    //var_dump($details_etablissement);
-
- 
     //Requete comments rajouter condition comment non null
     $req_comments = $bdd->prepare('SELECT id_user, comments, date_added FROM reviews  WHERE nom_etablissement = ? AND comments IS NOT NULL');
     $req_comments->execute(array($nom));
     //$list_comments = $req_comments->fetch();
-
-    //var_dump($list_comments);
-    
-    //echo 'jusquici tout vas bien';
-
 
     //Requete compteur likes
     $req_likes = $bdd->prepare('SELECT id FROM likes WHERE nom = ?');
@@ -66,16 +50,9 @@ if(isset($_GET['etablissement']) AND !empty($_GET['etablissement'])){
     $req_dislikes = $bdd->prepare('SELECT id FROM dislikes WHERE nom = ?');
     $req_dislikes->execute(array($nom));
     $compteur_dislikes = $req_dislikes->rowCount();
-
-    //var_dump($compteur_dislikes);
-
-
-
 }// Fin script 2
 ?>
- 
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <title>ma page</title>
@@ -87,24 +64,16 @@ if(isset($_GET['etablissement']) AND !empty($_GET['etablissement'])){
 </style>
 </head>
 <body>
+<div id="main_container"> 
+        <?php include("header_redesign.php"); ?>  
+        <?php include("navigation.php"); ?> 
+    <div class="row"><!-- Content 1000 px  1 col-->
 
-<div id="main_container"><!-- Main container -->
-
-    <?php include("header_redesign.php"); ?> <!-- ouverture et fermeture section -->
-
-    <div class="row_container space-around">
-        <div class="item item-1"><a href="dashboard.php">Accueil</a></div>
-        <div class="item item-2"><a href="/profile.php">Profil</a></div>
-        <div class="item item-3"><a href="notation.php">Partennaires</a></div>
-        <div class="item item-4"><a href="add_etablissement.php">Ajout établissement</a></div>
-    </div>
-
- <div class="row"><!-- Content 1000 px  1 col-->
     <article>
-       <div class="row_container space-around">
+        <div class="row_container space-around">
 
             <div class="item auto">
-                <h1><?php echo $details_etablissement[0]['nom']; ?></h1>
+            <h1><?php echo $details_etablissement[0]['nom']; ?></h1>
             </div>
 
             <div class="item auto">
@@ -112,70 +81,56 @@ if(isset($_GET['etablissement']) AND !empty($_GET['etablissement'])){
             </div>
 
             <div class="item auto">
-                <p><?php echo $details_etablissement[0]['descriptif']; ?></p>
+            <p><?php echo $details_etablissement[0]['descriptif']; ?></p>
             </div>
 
             <div class="ligne">
+
                 <div>
-                    <a href="php/vote.php?t=1&nom=<?= $details_etablissement[0]['nom']; ?>"> J'aime: </a><?php echo '<p>('. $compteur_likes .')</p>'?>
-               
-                    <a href="php/vote.php?t=2&nom=<?= $details_etablissement[0]['nom']; ?>">Je n'aime pas:</a><?php echo '<p>('. $compteur_dislikes .')</p>'?>
+                <a href="php/vote.php?t=1&nom=<?= $details_etablissement[0]['nom']; ?>"> J'aime: </a><?php echo '<p>('. $compteur_likes .')</p>'?>
+                <a href="php/vote.php?t=2&nom=<?= $details_etablissement[0]['nom']; ?>">Je n'aime pas:</a><?php echo '<p>('. $compteur_dislikes .')</p>'?>
                 </div>
-            </div>
 
-            <div> <!-- Comments -->
-                        
-                        <div class="item">
-                            <img src="images/comment.png" alt="image_commentaire"/>
-                        </div>
-                            <?php
-                            if(isset($_GET['etablissement']) AND !empty($_GET['etablissement'])){
-                                while ($list_comments = $req_comments->fetch()) {
+                <div>  
+                    <?php
+                        if(isset($_GET['etablissement']) AND !empty($_GET['etablissement'])){
+                            while ($list_comments = $req_comments->fetch()) {
+                            $id_bankster = $list_comments['id_user'];
+                            $req_info = $bdd->prepare('SELECT prenom, avatar FROM banksters WHERE id_user = ?');
+                            $req_info->execute(array($id_bankster));
+                            $userData = $req_info->fetch();
+                    ?>
+                            <TABLE>
+                                <TR>
+                                    <TD rowspan=2><img src="images/comment_1.png" alt="image_avatar"/></TD>
+                                    <TD rowspan=2><img src="images/avatar/<?php echo $userData['avatar'];?>" class="avatar" alt="image_avatar"/></TD>
+                                    <TD ><p><?php echo $userData['prenom'];?></p></TD>
+                                    </TR>
+                                    <TR>
+                                    <TD><?php echo $list_comments['comments'];?><?php echo $list_comments['date_added'];?></TD>
+                                </TR>
+                            </TABLE>
+                    <?php    
+                            }
+                        } 
+                    ?><!--Fin boucle --> 
+                </div>
 
-                                    $id_bankster = $list_comments['id_user'];
+                <div>
+                    <form method="post" action="php/add_comment.php?etablissement=<?php echo $nom;?>">
+                        <label for="commentaire">Ajouter un commentaire ?:</label><br>
+                        <textarea name="comment" rows="5" cols="33" id="commentaire"  maxlength="800" required></textarea ><br>
+                        <button type="submit">Envoyer le commentaire</button>
+                    </form>
+                </div>     
+                    
+            </div> 
 
-                                    $req_info = $bdd->prepare('SELECT prenom, avatar FROM banksters WHERE id_user = ?');
-                                    $req_info->execute(array($id_bankster));
-                                    $userData = $req_info->fetch();
-                                    //var_dump($userData);   
-                                    ?>  <!-- Fin commentaire -->
-                                    
-                                    <TABLE>
-                                        <TR>
-                                            <TD rowspan=2><img src="images/comment_1.png" alt="image_avatar"/></TD>
-                                            <TD rowspan=2><img src="images/avatar/<?php echo $userData['avatar'];?>" class="avatar" alt="image_avatar"/></TD>
-                                            <TD ><p><?php echo $userData['prenom'];?></p></TD>
-                                        </TR>
-                                        <TR>
-                                            <TD><?php echo $list_comments['comments'];?><?php echo $list_comments['date_added'];?></TD>
-                            
-                                        </TR>
-                                    </TABLE>
-                                    
-                                    <!-- Add comment-->
-                                    <?php    
-                                    }
-                                } 
-                            ?><!--Fin boucle --> 
-                            
-                    <div>
-                        <form method="post" action="php/add_comment.php?etablissement=<?php echo $nom;?>">
-                            <label for="comment">Ajouter un commentaire ?:</label><br>
-                            <textarea name="comment" rows="5" cols="33" id="commentaire"  maxlength="800" required></textarea ><br>
-                            <input type="submit" value="Envoyer le commentaire."><!-- submit button --></input>
-                        </form>
-                    </div>        
-
-
-        
-       </div>  <!-- Fin container -->      
+        </div>   
     </article>
-</div>
 
-    <?php include("footer.php"); ?> <!-- ouverture et fermeture section -->
-    
-   
-</div> 
-<!--  -->
+    </div>
+        <?php include("footer.php"); ?> <!-- ouverture et fermeture section -->
+    </div> 
 </body>
 </html>
