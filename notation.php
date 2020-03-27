@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 
     $bdd = new PDO('mysql:host=localhost;dbname=mon_projet;charset=UTF8', 'dev06' ,'_cxeK9Dt)hkA', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -24,8 +23,6 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
     header('location: /index.php?c=non_connecte');
 }
 ?>
- 
-
 <!DOCTYPE html >
 <html lang="fr">
 <head>
@@ -50,20 +47,19 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
         <div class="item item-4"><a href="add_etablissement.php">Ajout établissement</a></div>
     </div>
 
- <div class="row"><!-- Content 1000 px  1 col-->
+<div class="row"><!-- Content 1000 px  1 col-->
     <article>
 
         <?php
             $bdd = new PDO('mysql:host=localhost;dbname=mon_projet;charset=UTF8', 'dev06' ,'_cxeK9Dt)hkA', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             $req_list = $bdd->query('SELECT nom, descriptif, dir_ph_headquarter FROM etablissements');
-                                                              
             while($tab_fiches = $req_list->fetch()){ 
             ?>  
 
             <div class="row_container space-around">
                 <div>
-                    <div class="item item1"><img src="<?php echo 'images/'. $tab_fiches['dir_ph_headquarter'];?>" width="197" height="100" alt="logo_etablissement"/></div>
                     <div class="item item2"><h1><?php echo $tab_fiches['nom']; ?></h1></div>
+                    <div class="item item1"><img src="<?php echo 'images/'. $tab_fiches['dir_ph_headquarter'];?>" width="197" height="100" alt="logo_etablissement"/></div> 
                 </div>
                 <div>    
                     <div class="item item3"><p><?php echo $tab_fiches['descriptif']; ?></p></div>
@@ -79,8 +75,6 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 </div>
 
     <?php include("footer.php"); ?> <!-- ouverture et fermeture section -->
-    
-   
 </div> 
 <!--  -->
 </body>
