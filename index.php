@@ -7,7 +7,7 @@ if(isset($_COOKIE['user_id'])){
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<title>ma page</title>
+<title>Page index</title>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Extranet GBAF ">
@@ -37,7 +37,7 @@ if(isset($_COOKIE['user_id'])){
                 <div class="item">
                     <nav>
                         <ul>
-                            <li><a href="inscription.php" >S'inscrire.</a></li>
+                            <li><a href="php/inscription.php" >S'inscrire.</a></li>
                             <li><a href="lost.php" >Mot de passe oublié?.</a></li>
                         </ul>
                     </nav>
