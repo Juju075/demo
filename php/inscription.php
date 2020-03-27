@@ -6,8 +6,8 @@
 <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="container_inscription">
-        <h1>Inscription.</h1>   
+        <div id="container_inscription">
+                <h1>Inscription.</h1>   
                         <form method="post" action="add_user.php">
                                 <label for="champ">Prénom :</label><br>
                                 <input type="text" name="prenom" id="prenom" minlength=3 required/>
@@ -25,7 +25,8 @@
                                 <label for="champ">email:</label><br>
                                 <input type="text" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required/>
                                 <br><br>
-                                <hr><br>
+                                <hr>
+                                <br>
                                 <p class="center">Veuillez saisir une réponse à l'une<br> des 3 questions de votre choix.</p>
                                 <label for="question">Question secrete (mot de passe perdue.) :</label><br><br>
                                 <select name="question" size="1"  >
@@ -41,6 +42,6 @@
                         </form>
                 <p><a href="index.php"> Je ne souhaite pas m'inscrire</a>
                 </p>     
-</div>
+        </div>
 <body>
 </html>
