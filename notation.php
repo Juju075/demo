@@ -51,20 +51,21 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
             ?>  
 
             <div class="row_container space-around">
-                <div>
-                    <div class="item item2"><h1><?php echo $tab_fiches['nom']; ?></h1></div>
-                    <div class="item item1"><img src="<?php echo 'images/'. $tab_fiches['dir_ph_headquarter'];?>" width="197" height="100" alt="logo_etablissement"/></div> 
+                <div class="bloc one">
+                    <h1><?php echo $tab_fiches['nom']; ?></h1>
+                    <img src="<?php echo 'images/'. $tab_fiches['dir_ph_headquarter'];?>" width="197" height="100" alt="logo_etablissement"/> 
                 </div>
-                <div>    
-                    <div class="item item3"><p><?php echo $tab_fiches['descriptif']; ?></p></div>
+                <div class="bloc two">    
+                    <p><?php echo $tab_fiches['descriptif']; ?></p>
                 </div>    
-                <div>
-                    <div class="item item4"><a href="template_details.php?etablissement=<?= $tab_fiches['nom'];?>">Lire la suite</a></div>
+                <div class="bloc one">
+                    <a href="template_details.php?etablissement=<?= $tab_fiches['nom'];?>">Lire la suite</a>
                 </div>
             </div>
         <?php
         } // Fin de boucle
         ?> 
+        
     </article>
 </div>
 
