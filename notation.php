@@ -29,7 +29,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 <title>ma page</title>
 <meta charset="utf-8"/>
 <link rel="icon" href="favicon.ico">
-<link href="css/dashboard_redesign_1.css" rel="stylesheet" type="text/css">
+<link href="css/style_mobile_first.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
 <style>
 </style>
@@ -39,13 +39,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 <div id="main_container"><!-- Main container -->
 
     <?php include("header_redesign.php"); ?> <!-- ouverture et fermeture section -->
-
-    <div class="row_container space-around">
-        <div class="item item-1"><a href="dashboard.php">Accueil</a></div>
-        <div class="item item-2"><a href="/profile.php">Profil</a></div>
-        <div class="item item-3"><a href="notation.php">Partennaires</a></div>
-        <div class="item item-4"><a href="add_etablissement.php">Ajout établissement</a></div>
-    </div>
+    <?php include("navigation.php"); ?> 
 
 <div class="row"><!-- Content 1000 px  1 col-->
     <article>
