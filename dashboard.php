@@ -29,7 +29,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 <title>ma page</title>
 <meta charset="utf-8"/>
 <link rel="icon" href="favicon.ico">
-<link href="css/dashboard_redesign_1.css" rel="stylesheet" type="text/css">
+<link href="css/style_mobile_first.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
 </head>
 <body>
