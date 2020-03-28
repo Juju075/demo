@@ -27,7 +27,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 <title>ma page</title>
 <meta charset="utf-8"/>
 <link rel="icon" href="favicon.ico">
-<link href="css/dashboard_redesign_1.css" rel="stylesheet" type="text/css">
+<link href="css/style_mobile_first.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
 <style>
 </style>
@@ -63,7 +63,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
                                         } ?></p>
                                 </div>
                                 <div class="item">
-                                    <img src="images/avatar/<?php echo $userData['avatar']; ?>" alt="image_avatar" height="120"/>
+                                    <img src="images/avatar/<?php echo $userData['avatar']; ?>" height="120" alt="image_avatar"/>
                                 </div>
                             </div> <!-- Fin row -->
                             <div class="row_container space-around"> <!-- 1 Row -->
