@@ -1,0 +1,229 @@
+body {
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+}
+ul {
+  list-style-type: none;
+}
+
+h1,
+h5,
+p,
+a {
+  font-family: "Abel", sans-serif;
+}
+
+nav a {
+  font-size: 18px;
+}
+
+nav a:hover {
+  color: red;
+}
+
+.font_size_1 {
+  font-size: 20px;
+}
+.font_size_2 {
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  width: auto\9;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+.avatar {
+  vertical-align: middle;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.erreur {
+  text-align: center;
+  font-size: large;
+  color: red;
+}
+.good {
+  text-align: center;
+  font-size: large;
+  color: green;
+}
+
+.footer_arrondi {
+  width: 100%;
+  height: auto;
+  border-radius: 0px 0px 27px 27px;
+}
+.row {
+  /*ligne de contenu*/
+  width: 100%;
+  background-color: rgb(227, 228, 228);
+}
+.etab_container {
+  justify-content: center;
+}
+
+.color {
+  color: green;
+  text-align: center;
+}
+
+.row {
+  /*ligne de contenu*/
+  width: 100%;
+  background-color: rgb(227, 228, 228);
+
+  /* rainwbow border */
+  border: 5px solid transparent;
+  border-image: linear-gradient(
+    to bottom right,
+    #b827fc 0%,
+    #2c90fc 25%,
+    #b8fd33 50%,
+    #fec837 75%,
+    #fd1892 100%
+  );
+  border-image-slice: 1;
+}
+
+.section_header {
+  /* header permet appliquer flex 1 2 4 ect*/
+  display: flex;
+  flex-flow: row wrap;
+  /* centrer le bloc*/
+}
+
+#main_container {
+  margin-top: 100px;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px 0px 27px 27px;
+
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.item {
+  /* Formatage  */
+  padding: 15px;
+  width: auto;
+  min-width: 0;
+}
+.auto {
+  /* item Comportement */
+  flex: auto;
+}
+
+@media only screen and (min-width: 1px) {
+  .row_container {
+    /* Ligne standard  */
+    display: block;
+    width: 100%;
+  }
+  .row_container.disposition {
+    justify-content: center;
+  }
+
+  .display {
+    display: none;
+  }
+
+  .display1 {
+    display: none;
+  }
+  .display3 {
+    display: initial;
+  }
+  .display4 {
+    display: none;
+  }
+  .item .item-1 {
+    text-align: center;
+    justify-content: center;
+  }
+  .none {
+    flex: none;
+  }
+
+  .four {
+    flex-grow: 4;
+  }
+  .two {
+    flex-grow: 2;
+  }
+  .one {
+    flex-grow: 1;
+  }
+  .centrer {
+    justify-content: center;
+  }
+}
+
+/* Nouvelles règles si la fenêtre fait au plus 1024px de large */
+@media only screen and (min-width: 600px) {
+  .row_container {
+    /* Ligne standard  */
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+  }
+  .row_container.space-around {
+    justify-content: space-around;
+  }
+  .bloc {
+    padding: 15px;
+    max-width: 50%;
+    min-width: 0;
+  }
+  /* faire disparaitre logo extranet */
+  .display {
+    display: initial;
+  }
+  .display1 {
+    display: none;
+  }
+  .display3 {
+    display: initial;
+  }
+  .display4 {
+    display: initial;
+  }
+  .none {
+    flex: none;
+  }
+  .row_container.disposition {
+    justify-content: space-around;
+  }
+
+  /* mettre deconnexion a la fin du menu */
+  .none {
+    flex: none;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .display {
+    display: initial;
+  }
+  .display1 {
+    display: initial;
+  }
+  .display3 {
+    display: none;
+  }
+  .display4 {
+    display: initial;
+  }
+
+  }
+
+}
