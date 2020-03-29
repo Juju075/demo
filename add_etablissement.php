@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 
     $bdd = new PDO('mysql:host=localhost;dbname=mon_projet;charset=UTF8', 'dev06' ,'_cxeK9Dt)hkA', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -11,7 +10,6 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
     $req_nom_de_famille = $bdd->prepare('SELECT nom FROM banksters WHERE id_user = ? ');
     $req_nom_de_famille->execute(array($_SESSION['id_user']));
     $nomfamille = $req_nom_de_famille->fetch();
-
 
     $likes = null;
 
@@ -25,33 +23,23 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 }else{
     header('location: /index.php?c=non_connecte');
 }
-
 ?>
- 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <title>ma page</title>
 <meta charset="utf-8"/>
 <link rel="icon" href="favicon.ico">
-<link href="css/dashboard_redesign_1.css" rel="stylesheet" type="text/css">
+<link href="css/style_mobile_first.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
 <style>
 </style>
 </head>
 <body>
-
 <div id="main_container"><!-- Main container -->
     <?php include("header_redesign.php"); ?> <!-- ouverture et fermeture section -->
-
-    <div class="row_container space-around">
-        <div class="item item-1"><a href="dashboard.php">Accueil</a></div>
-        <div class="item item-2"><a href="/profile.php">Profil</a></div>
-        <div class="item item-3"><a href="notation.php">Partennaires</a></div>
-        <div class="item item-4"><a href="add_etablissement.php">Ajout établissement</a></div>
-    </div>
- <div class="row"><!-- Content 1000 px  1 col-->
+    <?php include("navigation.php"); ?> 
+<div class="row"><!-- Content 1000 px  1 col-->
                 <article class="row_container center"> 
                     <div class="etab_container">
                         <div class="item">
@@ -64,9 +52,9 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
                                     <label for="descriptif"></label>
                                     <textarea name="descriptif" rows="8" cols="55" id="descriptif" placeholder="Saissisez le descriptif de l'etablissement." required></textarea ><br><br> 
                                     <input type="hidden" name="size" value="20000">
-                                    <label for="file">Ajouter une image.</label>
+                                    <label for="fichier">Ajouter une image.</label>
                                     <input type="file" id="fichier" name="image"/>
-                                    <input type="submit" value="Envoyer le formulaire">
+                                    <button type="submit">Envoyer le formulaire</button>
                                 </form>
                         </div>
                     </div> 
@@ -74,6 +62,5 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 </div>
     <?php include("footer.php"); ?> <!-- ouverture et fermeture section -->    
 </div> 
-<!--  -->
 </body>
 </html>
