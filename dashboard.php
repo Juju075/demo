@@ -26,7 +26,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<title>ma page</title>
+<title>Accueil</title>
 <meta charset="utf-8"/>
 <link rel="icon" href="favicon.ico">
 <link href="css/style_mobile_first.css" rel="stylesheet" type="text/css">

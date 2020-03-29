@@ -1,153 +1,148 @@
-
 body {
-    background-color: #f8ceec;
-    background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
 }
-
-#main_wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    max-width:680px;
-    margin-top:100px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color:white;
-
-    border-color: 1 px solid blue;
-    
-    -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-	box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-}
-/* page dashboard pb*/
-
-#index1 {
-    display: flex;
-    flex-wrap: wrap;
-    max-width:680px;
-    margin-top:100px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color:white;
-
-    border-color: 1 px solid blue;
-    
-    -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-	box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-
-
-/* https://www.journaldunet.fr/web-tech/developpement/1202613-comment-creer-un-arriere-plan-backgroud-css-extensible-et-adaptable/ */
-.page {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 680px;
-    /* background-color: hotpink; */
-}
-
-.contenu {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 680px;
-    /* background-color: hotpink; */
-}
-
-/* page inscription */
-.container {
-    text-align: center;
-    margin-top:100px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 300px;
-    background-color:white; 
-    /* rainwbow border */
-    border: 5px solid transparent;
-    border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
-    border-image-slice: 1;
-}
-
-/* Page dashboard */
-.container1 {
-    margin-top:100px;
-    max-width:1000px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color:white; 
-
-    -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-	box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-
-.envoyer {
-
-margin-left: 290px;  
-}
-
-/* pb */
 p {
-    padding-left: 1ex;
-    padding-right: 1ex;
-    text-align: justify;
-    font-size:small;
-    
+  padding-left: 1ex;
+  padding-right: 1ex;
+  text-align: justify;
+  font-size: small;
+}
+.center {
+  text-align: center;
 }
 
 /* text footer */
 p1 {
-    padding-left: 1ex;
-    padding-right: 1ex;
-    text-align: justify;
-    font-size:x-small;
-    
+  padding-left: 1ex;
+  padding-right: 1ex;
+  text-align: justify;
+  font-size: x-small;
 }
 
 ul {
-list-style:none;
+  list-style: none;
+}
+#main_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 680px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border-color: 1 px solid blue;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-input[type=text] {
-    border: none;
-    border-bottom: 1px solid rgb(194, 18, 26);
+/* page dashboard pb*/
+
+#index1 {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 680px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border-color: 1 px solid blue;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#container_inscription_lost {
+  text-align: center;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  background-color: white;
+  /* rainwbow border */
+  border: 5px solid transparent;
+  border-image: linear-gradient(
+    to bottom right,
+    #b827fc 0%,
+    #2c90fc 25%,
+    #b8fd33 50%,
+    #fec837 75%,
+    #fd1892 100%
+  );
+  border-image-slice: 1;
+}
+
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 680px;
+  /* background-color: hotpink; */
+}
+
+.contenu {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 680px;
+  /* background-color: hotpink; */
+}
+
+/* Page dashboard */
+.container1 {
+  margin-top: 100px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.envoyer {
+  margin-left: 290px;
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid rgb(194, 18, 26);
 }
 
 /* https://www.alsacreations.com/article/lire/1621-responsive-images-srcset.html */
 /* conteneur de contenu */
 
-
 .img1 {
-    height: 60px;
-  }
-
+  height: 60px;
+}
 
 footer {
-    margin-top:5px;
-    display: flex;
-    text-align: center;
-    font-size: 11px;
-    font-family: ;
-    color: rgb(40, 40, 65);
+  margin-top: 5px;
+  display: flex;
+  text-align: center;
+  font-size: 11px;
+  font-family: ;
+  color: rgb(40, 40, 65);
 }
 
 header {
-background-color: #333399;    
-box-shadow: ;
-
+  background-color: #333399;
+  box-shadow: ;
 }
 
 .rainbow-box {
-    background-color: #302244;
-    border: 5px solid transparent;
-    border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
-    border-image-slice: 1;
-    height: 200px;
-    margin: 20px auto;
-    width: 200px;
-  }
-
-
-
-
+  background-color: #302244;
+  border: 5px solid transparent;
+  border-image: linear-gradient(
+    to bottom right,
+    #b827fc 0%,
+    #2c90fc 25%,
+    #b8fd33 50%,
+    #fec837 75%,
+    #fd1892 100%
+  );
+  border-image-slice: 1;
+  height: 200px;
+  margin: 20px auto;
+  width: 200px;
+}

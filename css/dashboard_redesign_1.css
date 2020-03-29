@@ -54,7 +54,6 @@ img {
   color: green;
   text-align: center;
 }
-
 /*media querie grand ecran */
 @media screen and (min-width: 800px) {
   #main_container {
@@ -105,7 +104,6 @@ img {
     /* Ligne standard  */
     display: flex;
     flex-flow: row wrap;
-
     width: 100%;
   }
 

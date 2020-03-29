@@ -40,7 +40,7 @@ if(isset($_SESSION['id_user']) AND !empty ($_SESSION['id_user'])){
     <?php include("header_redesign.php"); ?> <!-- ouverture et fermeture section -->
     <?php include("navigation.php"); ?> 
 <div class="row"><!-- Content 1000 px  1 col-->
-                <article class="row_container center"> 
+                <article class="row_container disposition"> 
                     <div class="etab_container">
                         <div class="item">
                             <h2>Ajouter un établissement</h2>
